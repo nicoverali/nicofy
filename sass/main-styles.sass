@@ -1,0 +1,30 @@
+$footer-height: 35px
+$main-top-padding: 60px
+
+.main-wrapper
+  background-color: $main-grey
+  padding-top: $main-top-padding
+  height: calc(100vh - #{$footer-height} - #{$main-top-padding})
+  position: relative
+  z-index: 1
+    //So that the background doesn't hide the pseudo-elements
+
+h1
+  font-size: 30px
+  font-family: 'Lemon/Milk', 'Open Sans', 'Sans-Serif'
+  &.nicofy
+    text-transform: uppercase
+    color: white
+    font-size: 55px
+      //It's default
+    font-weight: 300
+    letter-spacing: 3px
+    text-align: center
+h2
+  font-size: 22px
+  font-family: 'Quicksand', 'Open Sans', 'Sans-Serif'
+  font-weight: 300
+p
+  font-size: 16px
+  font-family: 'Open Sans', 'Sans-Serif'
+  font-weight: 300
