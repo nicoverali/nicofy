@@ -1,3 +1,25 @@
+@font-face {
+  font-family: "Open-Sans";
+  src: local("Open Sans");
+  src: local("Open-Sans");
+  src: url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600");
+  font-smooth: always;
+  -webkit-font-smooth: always;
+  -moz-font-smooth: always; }
+@font-face {
+  font-family: "Quicksand";
+  src: local("Quicksand");
+  src: url("https://fonts.googleapis.com/css?family=Quicksand:300,400");
+  font-smooth: always;
+  -webkit-font-smooth: always;
+  -moz-font-smooth: always; }
+@font-face {
+  font-family: "Lemon/Milk";
+  src: local("Lemon/Milk");
+  src: url("https://localhost:8000/?font=lemon");
+  font-smooth: always;
+  -webkit-font-smooth: always;
+  -moz-font-smooth: always; }
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2017 Twitter, Inc.
@@ -704,4 +726,4 @@ body {
 .pull-left {
   float: left; }
 
-/*# sourceMappingURL=bootstrap.css.map */
+/*# sourceMappingURL=styles.css.map */
