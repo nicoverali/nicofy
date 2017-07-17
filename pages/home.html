@@ -38,7 +38,8 @@
                   </g>
                 </svg>
               </div>
-              <input type="text" placeholder="Page URL" name="url" class="text-input">
+              <input type="text" placeholder="Page URL" name="url" autocomplete="off" class="text-input page-url-input" autofocus>
+              <p class="alert-message non-selectable">Please write a valid URL</p>
             </div>
             <div class="user">
               <div class="arrow-and-text" id="user">
@@ -51,9 +52,10 @@
                 </svg>
                 <p>your username ...</p>
               </div>
-              <input type="text" placeholder="User" name="username" class="text-input">
+              <input type="text" placeholder="(6-20 Characters)" name="username" autocomplete="off" class="text-input username-input" disabled>
+              <p class="alert-message non-selectable">Only 6-20 characters</p>
             </div>
-            <input type="submit" value="Go!">
+            <input type="submit" value="Go!" class="submit-input" disabled>
           </form>
         </div>
       </div>
@@ -62,5 +64,6 @@
   <footer>
     <p>Copyright 2017. Created by Nicolás Vera</p>
   </footer>
+  <script src="../js/home.js"></script>
 </body>
 </html>
