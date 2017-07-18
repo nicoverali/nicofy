@@ -1,0 +1,56 @@
+.succeed-wrap
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2)
+.succeed-header
+  background-color: $main-blue
+  height: 100px
+  width: 100%
+  color: white
+  text-align: center
+  display: table
+  h1
+    margin: 0px
+  svg
+    fill: white
+    width: 30px
+    height: auto
+.succeed-body
+  background-color: white
+  height: 150px
+  padding: 20px 20%
+  p
+    margin: 10px 0
+  .new-link
+    position: relative
+    height: 30px
+    border: 1px solid $light-grey
+    border-radius: 20px
+    width: 90%
+    display: table
+    margin: auto
+    p
+      margin: 0
+      color: darken($main-grey, 40)
+      text-align: center
+    svg
+      position: absolute
+      right: 15px
+      transform: translateY(-50%)
+      top: 50%
+      width: 17px
+      height: auto
+      cursor: pointer
+      fill: darken($main-grey, 30)
+      transition: fill 100ms ease-in-out
+      &:hover
+        fill: black
+  p.share
+    text-align: center
+  .social-networks
+    text-align: center
+    .facebook,.twitter,.google-plus
+      display: inline-block
+      margin: 0px 10px
+      cursor: pointer
+      svg
+        width: 35px
+        height: auto
