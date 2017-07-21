@@ -16,17 +16,24 @@ class WebHandler(BaseHTTPRequestHandler):
                 send_Page(redirection, 200, self)
                 return
             except LookupError:
-                print "That link doesn't exist"
-                notfound_page = nicofyPages.get_404_Notfound()
-                send_Page(notfound_page, 404, self)
-                return
+                try:
+                    searched_file = open('../' + path[1:])
+                    content = searched_file.read()
+                    searched_file.close()
+                    send_Page(content, 200, self)
+                    return
+                except IOError:
+                    print "That link doesn't exist"
+                    notfound_page = nicofyPages.get_404_Notfound()
+                    send_Page(notfound_page, 404, self)
+                    return
         if path == '/':
             home = nicofyPages.get_Home()
             send_Page(home, 200, self)
         if path == '/succeed':
             query_url = parse_qs(url.query)['url'][0]
             succeed_page = nicofyPages.get_Succeed(query_url)
-            send_Page(succeed_page, 200, self) 
+            send_Page(succeed_page, 200, self)
     def do_POST(self):
         print self.rfile.read(132).decode()
 
