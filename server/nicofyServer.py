@@ -4,6 +4,7 @@ import string
 import random
 
 import nicofyDB #Import Database-Communication functions
+import nicofyPages #Import pages creator
 
 url_path = ['/','/succeed']
 
