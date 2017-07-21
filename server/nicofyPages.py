@@ -60,7 +60,7 @@ def get_Redirect(new_link):
     base = get_Base_Layer()
     base = replace_Content(base, page_content)
     base = replace_BodyClass(base, 'redirect-page')
-    redirect-page.close()
+    redirect_page.close()
     return base
 
 def get_404_Notfound():
