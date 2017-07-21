@@ -14,6 +14,15 @@ def check_For_User(user):
         return False
     return True
 
+def check_For_Existing_Link(url):
+    DB, cursor = connect()
+    cursor.execute('SELECT new_link FROM links WHERE new_link = %s',(url,))
+    result = cursor.fetchall()
+    DB.close()
+    if len(result) == 0:
+        return False
+    return True
+
 def add_User(user):
     DB, cursor = connect()
     cursor.execute('INSERT INTO users VALUES(%s, DEFAULT)',(user,))

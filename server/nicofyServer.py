@@ -1,5 +1,7 @@
 from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
 from urlparse import parse_qs, urlparse
+import string
+import random
 
 import nicofyDB #Import Database-Communication functions
 
@@ -9,7 +11,7 @@ class WebHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         url = urlparse(self.path)
         path = url.path
-        if path not in url_Path:
+        if path not in url_path:
             try:
                 new_link = nicofyDB.get_Redirect_Link(path[1:]) #Doesn't send the '/'
                 redirection = nicofyPages.get_Redirect(new_Link)
@@ -35,7 +37,19 @@ class WebHandler(BaseHTTPRequestHandler):
             succeed_page = nicofyPages.get_Succeed(query_url)
             send_Page(succeed_page, 200, self)
     def do_POST(self):
-        print self.rfile.read(132).decode()
+        message_lenght = int(self.headers.get('Content-Length'))
+        query = self.rfile.read(message_lenght).decode()
+        query = parse_qs(query)
+        old_link = query['url'][0][1:-1]
+        username = query['user'][0][1:-1]
+        unique_id = random_ID()
+        while nicofyDB.check_For_Existing_Link(unique_id):
+            unique_id = random_ID()
+        nicofyDB.add_Link(old_link, unique_id, username)
+        self.send_response(303)
+        self.send_header('Location', ('/succeed?url=%s',(unique_id,)))
+        self.end_headers
+
 
 ############# END REQUEST HANDLER #################
 
@@ -48,6 +62,8 @@ def send_Page(page, status_code, handler):
     handler.end_headers()
     handler.wfile.write(encoded_page)
 
+def random_ID(size=6, chars=(string.ascii_lowercase + string.digits)):
+    return ''.join(random.choice(chars) for _ in range(size))
 
 if __name__ == '__main__':
     port = 8000
