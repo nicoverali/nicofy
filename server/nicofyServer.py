@@ -23,6 +23,12 @@ class WebHandler(BaseHTTPRequestHandler):
                     searched_file = open('../' + path[1:])
                     content = searched_file.read()
                     searched_file.close()
+                    if 'css' in path:
+                        send_Page(content, 200, self, 'css')
+                        return
+                    if 'js' in path:
+                        send_Page(content, 200, self, 'js')
+                        return
                     send_Page(content, 200, self)
                     return
                 except IOError:
@@ -54,11 +60,11 @@ class WebHandler(BaseHTTPRequestHandler):
 
 ############# END REQUEST HANDLER #################
 
-def send_Page(page, status_code, handler):
-    encoded_page = page.encode('utf-8')
+def send_Page(page, status_code, handler, typeof='html'):
+    encoded_page = page.decode('utf-8').encode('utf-8')
     page_length = str(len(encoded_page))
     handler.send_response(status_code)
-    handler.send_header('Content-Type', 'text/html; charset=utf-8')
+    handler.send_header('Content-Type', ('text/%s; charset=utf-8',(typeof,)))
     handler.send_header('Content-Length', page_length)
     handler.end_headers()
     handler.wfile.write(encoded_page)
