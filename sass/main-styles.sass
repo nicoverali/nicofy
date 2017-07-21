@@ -31,6 +31,15 @@ p
   font-family: 'Open Sans', 'Sans-Serif'
   font-weight: 300
 
+a
+  color: $main-blue
+  text-decoration: none
+  &:visited
+    color: $main-blue
+
+html
+  font-size: 0px
+
 .non-selectable
   -webkit-touch-callout: none
   -webkit-user-select: none
@@ -38,3 +47,7 @@ p
   -moz-user-select: none
   -ms-user-select: none
   user-select: none
+
+.table-vertical-align
+  display: table-cell
+  vertical-align: middle
