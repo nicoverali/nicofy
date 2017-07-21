@@ -69,14 +69,14 @@ def get_404_Notfound():
     page_content = replace_All_SVG(page_content)
     base = get_Base_Layer()
     base = replace_Content(base, page_content)
-    base = replace_BodyClass(base, '404-notfound')
+    base = replace_BodyClass(base, 'notfound')
     notfound_page.close()
     return base
 
 def get_Succeed(url):
     succeed_page = open(PAGES_DIRECTORY + 'succeed.html')
     page_content = succeed_page.read()
-    page_content = replace(page_content, url, 'New Link')
+    page_content = replace(page_content, SERVER_ADDRESS + url, 'New Link')
     page_content = replace_All_SVG(page_content)
     base = get_Base_Layer()
     base = replace_Content(base, page_content)
