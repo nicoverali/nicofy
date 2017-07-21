@@ -66,6 +66,7 @@ def get_Redirect(new_link):
 def get_404_Notfound():
     notfound_page = open(PAGES_DIRECTORY + '404-notfound.html')
     page_content = notfound_page.read()
+    page_content = replace_All_SVG(page_content)
     base = get_Base_Layer()
     base = replace_Content(base, page_content)
     base = replace_BodyClass(base, '404-notfound')
@@ -76,6 +77,7 @@ def get_Succeed(url):
     succeed_page = open(PAGES_DIRECTORY + 'succeed.html')
     page_content = succeed_page.read()
     page_content = replace(page_content, url, 'New Link')
+    page_content = replace_All_SVG(page_content)
     base = get_Base_Layer()
     base = replace_Content(base, page_content)
     base = replace_BodyClass(base, 'succeed-page')
