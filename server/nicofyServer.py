@@ -55,7 +55,7 @@ class WebHandler(BaseHTTPRequestHandler):
 ############# END REQUEST HANDLER #################
 
 def send_Page(page, status_code, handler):
-    encoded_page = page.encode()
+    encoded_page = page.encode('utf-8')
     page_length = str(len(encoded_page))
     handler.send_response(status_code)
     handler.send_header('Content-Type', 'text/html; charset=utf-8')
