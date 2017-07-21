@@ -68,7 +68,8 @@ def send_Page(page, status_code, handler, typeof='html'):
     encoded_page = page.decode('utf-8').encode('utf-8')
     page_length = str(len(encoded_page))
     handler.send_response(status_code)
-    handler.send_header('Content-Type', ('text/%s; charset=utf-8',(typeof,)))
+    content_type = 'text/' + typeof + '; charset=utf-8'
+    handler.send_header('Content-Type', content_type)
     handler.send_header('Content-Length', page_length)
     handler.end_headers()
     handler.wfile.write(encoded_page)
