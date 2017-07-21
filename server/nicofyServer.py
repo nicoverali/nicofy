@@ -15,7 +15,7 @@ class WebHandler(BaseHTTPRequestHandler):
         if path not in url_path:
             try:
                 new_link = nicofyDB.get_Redirect_Link(path[1:]) #Doesn't send the '/'
-                redirection = nicofyPages.get_Redirect(new_Link)
+                redirection = nicofyPages.get_Redirect(new_link)
                 send_Page(redirection, 200, self)
                 return
             except LookupError:
@@ -46,15 +46,19 @@ class WebHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         message_lenght = int(self.headers.get('Content-Length'))
         query = self.rfile.read(message_lenght).decode()
+        print 'Message: ' + query
         query = parse_qs(query)
-        old_link = query['url'][0][1:-1]
-        username = query['user'][0][1:-1]
+        print query
+        old_link = query['url'][0]
+        username = query['username'][0]
+        print old_link, username
         unique_id = random_ID()
         while nicofyDB.check_For_Existing_Link(unique_id):
             unique_id = random_ID()
         nicofyDB.add_Link(old_link, unique_id, username)
+        response_link = '/succeed?url=' + unique_id
         self.send_response(303)
-        self.send_header('Location', ('/succeed?url=%s',(unique_id,)))
+        self.send_header('Location', response_link)
         self.end_headers
 
 
