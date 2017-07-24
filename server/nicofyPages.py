@@ -1,7 +1,7 @@
-PAGES_DIRECTORY = '../pages/'
-SVG_DIRECTORY = '../assets/svgs/'
+PAGES_DIRECTORY = 'pages/'
+SVG_DIRECTORY = 'assets/svgs/'
 SERVER_ADDRESS = 'localhost:8000/'
-JS_DIRECTORY = '../js/'
+JS_DIRECTORY = 'js/'
 
 def get_Base_Layer():
     base = open(PAGES_DIRECTORY + 'base-layer.html')
