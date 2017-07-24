@@ -2,6 +2,7 @@ from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
 from urlparse import parse_qs, urlparse
 import string
 import random
+import os #To set PORT to be configurable for Heroku
 
 import nicofyDB #Import Database-Communication functions
 import nicofyPages #Import pages creator
@@ -78,7 +79,7 @@ def random_ID(size=6, chars=(string.ascii_lowercase + string.digits)):
     return ''.join(random.choice(chars) for _ in range(size))
 
 if __name__ == '__main__':
-    port = 8000
+    port = int(os.environ.get('PORT', 8000))
     server_address = ('', port)
     httpDeploy = HTTPServer(server_address, WebHandler)
     httpDeploy.serve_forever()
