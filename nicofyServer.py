@@ -4,8 +4,8 @@ import string
 import random
 import os #To set PORT to be configurable for Heroku
 
-import nicofyDB #Import Database-Communication functions
-import nicofyPages #Import pages creator
+from server import nicofyDB #Import Database-Communication functions
+from server import nicofyPages #Import pages creator
 
 url_path = ['/','/succeed']
 
