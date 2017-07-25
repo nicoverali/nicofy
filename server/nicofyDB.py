@@ -1,7 +1,15 @@
 import psycopg2
+import os
+from urlparse import urlparse
+
+herokuDB = urlparse(os.environ["DATABASE_URL"])
 
 def connect():
-    database = psycopg2.connect('dbname=nicofy user=postgres password=admin')
+    database = psycopg2.connect(database=herokuDB.path[1:],
+                                user=herokuDB.username,
+                                password=herokuDB.password,
+                                host=herokuDB.hostname,
+                                port=herokuDB.port)
     cursor = database.cursor()
     return database , cursor
 
