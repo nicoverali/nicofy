@@ -4,6 +4,13 @@ import string
 import random
 import os #To set PORT to be configurable for Heroku
 
+#For threading
+import threading
+from SocketServer import ThreadingMixIn
+
+class ThreadHTTPServer(ThreadingMixIn, HTTPServer):
+    "This is an HTTPServer that supports thread-based concurrency."
+
 from server import nicofyDB #Import Database-Communication functions
 from server import nicofyPages #Import pages creator
 
@@ -81,5 +88,6 @@ def random_ID(size=6, chars=(string.ascii_lowercase + string.digits)):
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8000))
     server_address = ('', port)
-    httpDeploy = HTTPServer(server_address, WebHandler)
+    httpDeploy = ThreadHTTPServer(server_address, WebHandler)
+    print   'Server is running on PORT = ' + str(port)
     httpDeploy.serve_forever()
