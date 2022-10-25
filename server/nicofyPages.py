@@ -1,7 +1,10 @@
+import os
+
 PAGES_DIRECTORY = 'pages/'
 SVG_DIRECTORY = 'assets/svgs/'
-SERVER_ADDRESS = 'localhost:8000/'
+SERVER_ADDRESS = os.getenv("HOSTNAME")
 JS_DIRECTORY = 'js/'
+
 
 def get_Base_Layer():
     base = open(PAGES_DIRECTORY + 'base-layer.html')
@@ -12,18 +15,22 @@ def get_Base_Layer():
     footer.close()
     return base_content.replace('<!-- Footer -->', footer_content)
 
+
 def get_Content_Of(file_path):
-    oFile = open(file_path,'r')
+    oFile = open(file_path, 'r')
     cFile = oFile.read()
     return cFile
+
 
 def replace_Content(base, content):
     base_replaced = base.replace('<!-- Content -->', content)
     return base_replaced
 
+
 def replace_BodyClass(base, class_name):
     base_replaced = base.replace('<!-- Body Class -->', class_name)
     return base_replaced
+
 
 def replace_All_SVG(content):
     ocurrences = content.count('<!-- SVG:')
@@ -32,9 +39,11 @@ def replace_All_SVG(content):
         from_index = content.find('<!-- SVG:', index)
         to_index = content.find(' #-->', index)
         path = SVG_DIRECTORY + content[(from_index + 9):to_index]
-        content = content.replace(content[from_index:to_index + 4], get_Content_Of(path))
+        content = content.replace(
+            content[from_index:to_index + 4], get_Content_Of(path))
         index = to_index
     return content
+
 
 def replace(content, new_content, tag):
     from_index = content.find('<!-- ' + tag)
@@ -53,6 +62,7 @@ def get_Home():
     home.close()
     return base
 
+
 def get_Redirect(new_link):
     redirect_page = open(PAGES_DIRECTORY + 'redirect.html')
     page_content = redirect_page.read()
@@ -62,6 +72,7 @@ def get_Redirect(new_link):
     base = replace_BodyClass(base, 'redirect-page')
     redirect_page.close()
     return base
+
 
 def get_404_Notfound():
     notfound_page = open(PAGES_DIRECTORY + '404-notfound.html')
@@ -73,10 +84,11 @@ def get_404_Notfound():
     notfound_page.close()
     return base
 
+
 def get_Succeed(url):
     succeed_page = open(PAGES_DIRECTORY + 'succeed.html')
     page_content = succeed_page.read()
-    page_content = replace(page_content, SERVER_ADDRESS + url, 'New Link')
+    page_content = replace(page_content, SERVER_ADDRESS+'/'+url, 'New Link')
     page_content = replace_All_SVG(page_content)
     base = get_Base_Layer()
     base = replace_Content(base, page_content)

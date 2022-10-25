@@ -1,3 +1,5 @@
 stuff/
 .sass-cache/
 .env
+.vercel
+__pycache__

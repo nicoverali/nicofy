@@ -18,7 +18,7 @@ class ThreadHTTPServer(ThreadingMixIn, HTTPServer):
 url_path = ['/', '/succeed']
 
 
-class WebHandler(BaseHTTPRequestHandler):
+class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         url = urlparse(self.path)
         path = url.path
@@ -94,6 +94,6 @@ def random_ID(size=6, chars=(string.ascii_lowercase + string.digits)):
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8000))
     server_address = ('', port)
-    httpDeploy = ThreadHTTPServer(server_address, WebHandler)
+    httpDeploy = ThreadHTTPServer(server_address, handler)
     print('Server is running on PORT = ' + str(port))
     httpDeploy.serve_forever()
