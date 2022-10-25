@@ -1,1 +1,0 @@
-Nicofy. is a small page, where you can short your URLs by having our shorts links to redirect.
